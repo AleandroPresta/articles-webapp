@@ -51,5 +51,34 @@
             </div>
         </nav>
         <main>{% block content %} {% endblock %}</main>
+        <div class="container fixed-bottom">
+            <footer class="py-3 my-4 bd-footer ">
+                <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+                    <li class="nav-item">
+                            <a class="nav-link px-2 text-body-secondary" href="/about">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link px-2 text-body-secondary" href="/contact">Contact</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link px-2 text-body-secondary" href="{% url 'posts:all_posts' %}">Posts</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link px-2 text-body-secondary" href="#">New Post</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link px-2 text-body-secondary" href="#">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link px-2 text-body-secondary" href="#">Register</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link px-2 text-body-secondary" href="#">Logout</a>
+                        </li>
+                </ul>
+                <p class="text-center text-body-secondary">&copy; 2024 Aleandro Presta</p>
+            </footer>
+        </div>
+
     </body>
 </html>
