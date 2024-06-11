@@ -1,8 +1,37 @@
 <!--home.html-->
 {% extends 'layout.html'%}
 {% block title%}
-    About Us
+    About Me
 {% endblock %}
 {% block content %}
-    <h1>About Us!</h1>
+<!-- About 1 - Bootstrap Brain Component -->
+<section class="py-3 py-md-5">
+  <div class="container">
+    <div class="row gy-3 gy-md-4 gy-lg-0 align-items-lg-center">
+      <div class="col-12 col-lg-6 col-xl-5">
+        <img class="img-fluid img-thumbnail" loading="lazy" src="../static/assets/Io.jpeg" alt="My picture">
+      </div>
+      <div class="col-12 col-lg-6 col-xl-7">
+        <div class="row justify-content-xl-center">
+          <div class="col-12 col-xl-11">
+            <h2 class="mb-3">Who Am I?</h2>
+            <p class="lead fs-4 text-secondary mb-3">I'm Aleandro Presta, a Software Engineer specialized in Machine Learning and Web Development</p>
+            <p class="mb-5">I am a dedicated and enthusiastic software engineer with a master's degree in Artificial Intelligence and Machine Learning. My passion for technology extends beyond my professional career, as I continuously seek to expand my knowledge and skills in the ever-evolving field of software development.</p>
+            <div class="row gy-4 gy-md-0 gx-xxl-5X">
+              <div class="col-12 col-md-6">
+                <h3 align="left">Connect with me:</h3>
+                <p align="left">
+                <a href="https://linkedin.com/in/aleandro-presta-6523471b9" target="blank" title="My LinkedIn profile"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/linked-in-alt.svg" alt="aleandro-presta-6523471b9" height="30" width="40" /></a>
+                <a href="https://github.com/AleandroPresta" target="blank" title="My GitHub profile"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/github.svg" alt="AleandroPresta" height="30" width="40" /></a>
+                <a href="mailto: aleandro.presta@outlook.com" target="blank" title="Send me an Email"><img align="center" src="../static/assets/envelope.svg" alt="Email" height="30" width="40" /></a>
+                <a href="https://www.frontendmentor.io/profile/AleandroPresta" target="blank" title="My Frontend Mentor profile"><img align="center" src="https://cdn.worldvectorlogo.com/logos/frontendmentor-logo.svg" alt="Email" height="30" width="40" /></a>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 {% endblock %}
