@@ -1,0 +1,15 @@
+<!--home.html-->
+{% extends 'layout.html'%}
+{% block title%}
+    All Posts
+{% endblock %}
+{% block content %}
+    <h1>Posts List</h1>
+    {% for post in posts %}
+    <article>
+        <h2>{{ post.title }}</h2>
+        <p>{{ post.date }}</p> by <strong>{{ post.author }}</strong>
+        <p>{{ post.body }}</p>
+    </article>
+    {% endfor %}
+{% endblock %}
