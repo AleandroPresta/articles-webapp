@@ -18,7 +18,7 @@
                             <h2 class="card-title">{{ post.title }}</h2>
                             <p class="card-text">{{ post.date }} by <strong>{{ post.author }}</strong> </p>
                             <p class="card-text text-truncate">{{ post.body }}</p>
-                            <a href="{% url 'posts:page' slug=post.slug %}" class="btn btn-primary">Read Full Article</a>
+                            <a href="{% url 'posts:page' slug=post.slug %}" class="btn btn-dark">Read Full Article</a>
                         </div>
                     </div>
                 </div>
