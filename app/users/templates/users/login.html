@@ -1,18 +1,23 @@
 {% extends 'layout.html'%}
+{% load crispy_forms_tags %}
 {% block title%}
     Login
 {% endblock %}
 {% block content %}
-    <h1>Login</h1>
-    <form 
-    class="row g-3"
-    action="/users/login/" 
-    method="POST">
-        {% csrf_token %}
-        {{ form }}
-        {% if request.GET.next %}
-            <input type="hidden" name="next" value="{{ request.GET.next }}">
-        {% endif %}
-        <button type="submit" class="btn btn-dark me-2">Submit</button>
-    </form>
+    <main class="py-4">
+        <h1 class="h3 mb-3 fw-normal">Login</h1>
+        <form 
+        class="row g-3"
+        action="/users/login/" 
+        method="POST">
+            {% csrf_token %}
+            {{ form | crispy }}
+            {% if request.GET.next %}
+                <input type="hidden" name="next" value="{{ request.GET.next }}">
+            {% endif %}
+            <button type="submit" class="btn btn-dark me-2 w-100 py-2">Submit</button>
+        </form>
+    </main>
+    
+    
 {% endblock %}
