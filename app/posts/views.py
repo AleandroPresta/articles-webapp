@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from .models import Post
 from django.contrib.auth.decorators import login_required
 from . import forms
+from django.utils.text import slugify
 
 # Create your views here.
 def all_posts(request):
@@ -18,7 +19,8 @@ def post_new(request):
         form = forms.CreatePost(request.POST, request.FILES) 
         if form.is_valid():
             newpost = form.save(commit=False) 
-            newpost.author = request.user 
+            newpost.author = request.user
+            newpost.slug = slugify(newpost.title)
             newpost.save()
             return redirect('posts:list')
     else:
