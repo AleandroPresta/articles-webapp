@@ -5,15 +5,27 @@
 {% block content %}
     <section>
         <div class="container py-4">
-            <div class="col">
-                <img 
-                src="{{ post.banner.url }}" 
-                alt="Image description"
-                class="img-fluid rounded"/>
-                <h1>{{post.title}}</h1>
-                <p>{{post.date}}</p>
-                <p>{{post.body}}</p>
-
+            <div class="row">
+                <div class="col">
+                    <img 
+                    src="{{ post.banner.url }}" 
+                    alt="Image description"
+                    class="img-fluid rounded"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <h1 align="center">{{post.title}}</h1>
+                </div>
+                <div class="row p-2">
+                    <div class="col">
+                        <p>{{post.body}}</p>
+                    </div>
+                </div>
+                <div class="col" align="end">
+                    <p>Posted on: <strong>{{post.date}}</strong></p>
+                    <p>Written by: <strong>{{post.author}}</strong></p>
+                </div>
             </div>
         </div>  
     </section>
