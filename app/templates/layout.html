@@ -32,21 +32,25 @@
                             <a class="nav-link" href="/contact">Contact</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'posts:all_posts' %}">Posts</a>
+                            <a class="nav-link" href="{% url 'posts:list' %}">Posts</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">New Post</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Login</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Register</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Logout</a>
-                        </li>
+                        {% if user.is_authenticated %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">New Post</a>
+                            </li>
+                        {% endif %}
                     </ul>
+                    <div class="text-end">
+                        {% if user.is_authenticated %}
+                            <form class="logout" action="{% url 'users:logout' %}" method="POST">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-outline-light me-2">Logout</button>
+                            </form>
+                        {% else %}
+                            <a class="btn btn-outline-light me-2" href="{% url 'users:login' %}" title="Login a New User">Login</a>
+                            <a class="btn btn-warning" href="{% url 'users:register' %}">Sign-up</a>
+                        {% endif %}
+                    </div>
                 </div>
             </div>
         </nav>
@@ -63,20 +67,23 @@
                             <a class="nav-link px-2 text-body-secondary" href="/contact">Contact</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link px-2 text-body-secondary" href="{% url 'posts:all_posts' %}">Posts</a>
+                            <a class="nav-link px-2 text-body-secondary" href="{% url 'posts:list' %}">Posts</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link px-2 text-body-secondary" href="#">New Post</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link px-2 text-body-secondary" href="#">Login</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link px-2 text-body-secondary" href="#">Register</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link px-2 text-body-secondary" href="#">Logout</a>
-                        </li>
+                        {% if user.is_authenticated %}
+                            <li class="nav-item">
+                                <a class="nav-link px-2 text-body-secondary" href="#">New Post</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link px-2 text-body-secondary" href="#">Logout</a>
+                            </li>
+                        {% else %}
+                            <li class="nav-item">
+                                <a class="nav-link px-2 text-body-secondary" href="#">Login</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link px-2 text-body-secondary" href="#">Register</a>
+                            </li>
+                        {% endif %}
                 </ul>
                 <p class="text-center text-body-secondary">&copy; 2024 Aleandro Presta</p>
             </footer>
