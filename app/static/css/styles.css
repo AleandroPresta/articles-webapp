@@ -8,5 +8,11 @@
 
 #intro {
     background-image: url("https://mdbootstrap.com/img/new/fluid/city/018.jpg");
+    background-size: cover;
+    background-position: center;
     height: 100vh;
+}
+
+.mask {
+    height: 100%;
 }
