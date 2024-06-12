@@ -5,11 +5,11 @@
 {% endblock %}
 {% block content %}
     <div class="container py-4">
-        <h1>Posts List</h1>
-        <div class="row">
+        <h1 align="center">Posts List</h1>
+        <div class="row" align="center">
             {% for post in posts %}
-                <div class="col-4 p-2">
-                    <div class="card" style="width: 18rem;">
+                <div class="col-xl-6 col-xxl-4 p-2">
+                    <div class="card" style="width: 20rem; max-width: 100%;">
                         <img 
                         src="{{ post.banner.url }}" 
                         alt="Image description"
