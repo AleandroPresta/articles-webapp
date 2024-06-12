@@ -23,7 +23,7 @@
                 >
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarToggler">
+                <div class="collapse navbar-collapse justify-content-between" id="navbarToggler">
                     <ul class="nav nav-underline">
                         <li class="nav-item">
                             <a class="nav-link" href="/about">About</a>
@@ -72,16 +72,6 @@
                         {% if user.is_authenticated %}
                             <li class="nav-item">
                                 <a class="nav-link px-2 text-body-secondary" href="#">New Post</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link px-2 text-body-secondary" href="#">Logout</a>
-                            </li>
-                        {% else %}
-                            <li class="nav-item">
-                                <a class="nav-link px-2 text-body-secondary" href="#">Login</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link px-2 text-body-secondary" href="#">Register</a>
                             </li>
                         {% endif %}
                 </ul>
