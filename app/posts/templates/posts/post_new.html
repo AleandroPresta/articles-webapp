@@ -4,12 +4,16 @@
     New Post Page
 {% endblock %}
 {% block content %}
-    <section>
-        <h1>New Post</h1>
-        <form action="{% url 'posts:new-post' %}" method="POST" enctype="multipart/form-data">
+    <section class="py-4">
+        <h1 class="h3 mb-3 fw-normal">New Post</h1>
+        <form
+        class="row"
+        action="{% url 'posts:new-post' %}" 
+        method="POST" 
+        enctype="multipart/form-data">
             {% csrf_token %}
             {{ form | crispy }}
-            <button type="submit">Create Post</button>
+            <button type="submit" class="btn btn-dark me-2 w-100 py-2">Create Post</button>
         </form>
     </section>
 {% endblock %}
