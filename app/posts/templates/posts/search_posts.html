@@ -1,11 +1,15 @@
 <!--home.html-->
 {% extends 'layout.html'%}
 {% block title%}
-    All Posts
+    Searched Posts
 {% endblock %}
 {% block content %}
     <div class="container py-4">
-        <h1 align="center">Posts List</h1>
+        {% if query %}
+            <h1 align="center">Searched Posts with "{{ query }}"</h1>
+        {% else %}
+            <h1 align="center">All Posts</h1>
+        {% endif %}
         <div class="row">
             <div class="container-fluid">
                 <form class="d-flex" role="search" method="POST" action="{% url 'posts:search-view' %}">
