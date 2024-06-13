@@ -7,7 +7,7 @@ from django.utils.text import slugify
 # Create your views here.
 def all_posts(request):
     posts = Post.objects.all().order_by('-date')
-    return render(request, 'posts/all_posts.html', {'posts': posts})
+    return render(request, 'posts/all_posts.html', {'posts': posts, 'categories': Post.CATEGORY_CHOICES})
 
 def post_page(request, slug):
     post = Post.objects.get(slug=slug)
