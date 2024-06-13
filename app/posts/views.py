@@ -30,3 +30,12 @@ def post_new(request):
     else:
         form = forms.CreatePost()
     return render(request, 'posts/post_new.html', { 'form': form })
+
+
+def search_posts(request):
+    if request.method == "POST":
+        search_query = request.POST['search_query']
+        posts = Post.objects.filter(title__contains=search_query)
+        return render(request, 'posts/search_posts.html', {'query':search_query, 'posts':posts})
+    else:
+        return render(request, 'posts:list')
