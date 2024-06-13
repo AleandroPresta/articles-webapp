@@ -21,6 +21,10 @@ def post_new(request):
             newpost = form.save(commit=False) 
             newpost.author = request.user
             newpost.slug = slugify(newpost.title)
+            # Check if exist another post with the same slug
+            if Post.objects.filter(slug=newpost.slug).exists():
+                # If exist, add a number to the end slug
+                newpost.slug = newpost.slug + '-' + str(Post.objects.filter(slug=newpost.slug).count())
             newpost.save()
             return redirect('posts:list')
     else:
