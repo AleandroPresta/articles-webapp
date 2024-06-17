@@ -46,15 +46,14 @@ def filter_posts(request):
     print(f"Request : {request}")
     if request.method == "POST":
         print(f"Request POST : {request.POST}")
-        filter_query = request.POST['filter_query']
+        filter_query = request.POST.get('filter_query')
         print(f"Filter Query: {filter_query}")
         filter_query_code = Post.convert_name_to_code(name=filter_query)
         print(f"Filter Query Code: {filter_query_code}")
-        if filter_query_code == 'all':
+        if filter_query == 'all':
             posts = Post.objects.all()
         else:
-            # posts = Post.objects.filter(category=filter_query_code)
-            posts = Post.objects.filter(category=filter_query)
+            posts = Post.objects.filter(category=filter_query_code)
         print(f"Posts: {posts}")
         return render(request, 'posts/filter_posts.html', {'query': filter_query, 'posts': posts})
     else:
