@@ -1,12 +1,12 @@
 <!--home.html-->
 {% extends 'layout.html'%}
 {% block title%}
-    Searched Posts
+    Filtered Posts
 {% endblock %}
 {% block content %}
     <div class="container py-4">
         {% if query %}
-            <h1 align="center">Searched Posts with "{{ query }}"</h1>
+            <h1 align="center"> Posts in the "{{ query }}" Category</h1>
         {% else %}
             <h1 align="center">All Posts</h1>
         {% endif %}
