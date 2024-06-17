@@ -37,7 +37,7 @@ def search_posts(request):
     if request.method == "POST":
         search_query = request.POST['search_query']
         posts = Post.objects.filter(title__contains=search_query)
-        return render(request, 'posts/search_posts.html', {'query':search_query, 'posts':posts})
+        return render(request, 'posts/search_posts.html', {'query':search_query, 'posts':posts, 'categories': CATEGORY_CHOICES})
     else:
         return render(request, 'posts:list')
 
