@@ -12,12 +12,12 @@
                     <p>Filter by Category:</p>
                 </div>
                 <div class="row">
-                    <form class="d-flex" role="search" id="filterform" method="POST" action="{% url 'posts:filter-view' %}">
+                    <form class="d-flex" method="POST" action="{% url 'posts:filter-view' %}">
                         {% csrf_token %}
-                        <select class="form-select me-2" name="filter_query" form="filterform">
+                        <select class="form-select me-2" name="select_query">
                             <option value="all">All</option>
                             {% for key, category in categories %}
-                                <option value="{{ category.id }}">{{ category }}</option>
+                                <option value="{{ key }}">{{ category }}</option>
                             {% endfor %}
                         </select>
                         <button class="btn btn-outline-dark" type="submit">Filter</button>

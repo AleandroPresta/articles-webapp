@@ -50,3 +50,9 @@ class Post(models.Model):
             if category == name:
                 return code
         return 'OTR'
+    
+    def convert_code_to_name(code):
+        for category, name in CATEGORY_CHOICES:
+            if category == code:
+                return name
+        return 'Other'
