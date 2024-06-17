@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Post
+from .models import CATEGORY_CHOICES
 from django.contrib.auth.decorators import login_required
 from . import forms
 from django.utils.text import slugify
@@ -7,7 +8,7 @@ from django.utils.text import slugify
 # Create your views here.
 def all_posts(request):
     posts = Post.objects.all().order_by('-date')
-    return render(request, 'posts/all_posts.html', {'posts': posts, 'categories': Post.CATEGORY_CHOICES})
+    return render(request, 'posts/all_posts.html', {'posts': posts, 'categories': CATEGORY_CHOICES})
 
 def post_page(request, slug):
     post = Post.objects.get(slug=slug)
@@ -39,3 +40,23 @@ def search_posts(request):
         return render(request, 'posts/search_posts.html', {'query':search_query, 'posts':posts})
     else:
         return render(request, 'posts:list')
+
+    
+def filter_posts(request):
+    print(f"Request : {request}")
+    if request.method == "POST":
+        print(f"Request POST : {request.POST}")
+        filter_query = request.POST['filter_query']
+        print(f"Filter Query: {filter_query}")
+        filter_query_code = Post.convert_name_to_code(name=filter_query)
+        print(f"Filter Query Code: {filter_query_code}")
+        if filter_query_code == 'all':
+            posts = Post.objects.all()
+        else:
+            # posts = Post.objects.filter(category=filter_query_code)
+            posts = Post.objects.filter(category=filter_query)
+        print(f"Posts: {posts}")
+        return render(request, 'posts/filter_posts.html', {'query': filter_query, 'posts': posts})
+    else:
+        posts = Post.objects.all()
+        return render(request, 'posts/filter_posts.html', {'posts': posts})

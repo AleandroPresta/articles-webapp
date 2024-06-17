@@ -12,25 +12,6 @@
         {% endif %}
         <div class="row">
             <div class="container-fluid">
-                <div class="row">
-                    <p>Filter by Category:</p>
-                </div>
-                <div class="row">
-                    <form class="d-flex" role="search" method="POST">
-                        {% csrf_token %}
-                        <select class="form-select me-2" name="category">
-                        <option value="all">All</option>
-                        {% for key, category in categories %}
-                            <option value="{{ category.id }}">{{ category }}</option>
-                        {% endfor %}
-                        </select>
-                        <button class="btn btn-outline-dark" type="submit">Filter</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="container-fluid">
                 <form class="d-flex" role="search" method="POST" action="{% url 'posts:search-view' %}">
                     {% csrf_token %}
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search_query">

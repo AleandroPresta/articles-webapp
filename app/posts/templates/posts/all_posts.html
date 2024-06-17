@@ -12,9 +12,9 @@
                     <p>Filter by Category:</p>
                 </div>
                 <div class="row">
-                    <form class="d-flex" role="search" method="POST">
+                    <form class="d-flex" role="search" method="POST" action="{% url 'posts:filter-view' %}">
                         {% csrf_token %}
-                        <select class="form-select me-2" name="category">
+                        <select class="form-select me-2" name="filter_query">
                         <option value="all">All</option>
                         {% for key, category in categories %}
                             <option value="{{ category.id }}">{{ category }}</option>
