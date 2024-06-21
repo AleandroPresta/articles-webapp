@@ -38,3 +38,6 @@ def logout_view(request):
     if(request.method == 'POST'):
         logout(request)
         return redirect('/')
+
+def modify_profile_view(request):
+    return render(request, 'users/profile.html')
