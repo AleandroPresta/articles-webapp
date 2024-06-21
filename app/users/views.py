@@ -39,5 +39,5 @@ def logout_view(request):
         logout(request)
         return redirect('/')
 
-def modify_profile_view(request):
-    return render(request, 'users/profile.html')
+def update_profile_view(request):
+    return render(request, 'users/update_profile.html')
