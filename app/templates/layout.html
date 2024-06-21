@@ -40,17 +40,7 @@
                             </li>
                         {% endif %}
                     </ul>
-                    <!--<div class="text-end">
-                        {% if user.is_authenticated %}
-                            <form class="logout" action="{% url 'users:logout' %}" method="POST">
-                                {% csrf_token %}
-                                <button type="submit" class="btn btn-outline-light me-2">Logout</button>
-                            </form>
-                        {% else %}
-                            <a class="btn btn-outline-light me-2" href="{% url 'users:login' %}" title="Login a New User">Login</a>
-                            <a class="btn btn-warning" href="{% url 'users:register' %}">Sign-up</a>
-                        {% endif %}
-                    </div> -->
+                    {% if user.is_authenticated %}
                     <div class="dropdown dropstart text-end">
                         <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                             <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
@@ -60,9 +50,18 @@
                             <li><a class="dropdown-item" href="#">Settings</a></li>
                             <li><a class="dropdown-item" href="#">Profile</a></li>
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="#">Sign out</a></li>
+                            <form class="logout" action="{% url 'users:logout' %}" method="POST">
+                                {% csrf_token %}
+                                <li><button class="dropdown-item" type="submit">Logout</button></li>
+                            </form>
                         </ul>
                     </div>
+                    {% else %}
+                    <div class="text-end">
+                        <a class="btn btn-outline-light me-2" href="{% url 'users:login' %}" title="Login a New User">Login</a>
+                        <a class="btn btn-warning" href="{% url 'users:register' %}">Sign-up</a>
+                    </div>
+                    {% endif %}
                 </div>
             </div>
         </nav>
