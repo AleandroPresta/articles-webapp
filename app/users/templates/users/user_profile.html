@@ -1,0 +1,7 @@
+<h1>Welcome {{ userprofile }}!<h1>
+<p>Here is your profile information:</p>
+<p>Username: {{ userprofile.user.username }}</p>
+<p>Email: {{ userprofile.user.email }}</p>
+<p>First Name: {{ userprofile.user.first_name }}</p>
+<p>Last Name: {{ userprofile.user.last_name }}</p>
+<p>Profile Image: <img src="{{ userprofile.profile_image.url }}" alt="user profile image" width="32" height="32" class="rounded-circle"></p>

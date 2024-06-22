@@ -93,3 +93,19 @@ def update_profile_view(request):
         messages.error(request, 'You must be logged in to update your profile')
         logging.debug('Redirecting to login')
         return redirect('users:login')
+    
+    
+def profile_view(request, username):
+    logging.info(f'Profile view for {username}')
+    logging.debug(f'Request: {request}')
+    try:
+        userprofile = UserProfile.objects.get(user__username=username)
+        logging.debug(f'User: {userprofile}')
+    except UserProfile.DoesNotExist:
+        logging.error('UserProfile does not exist.')
+        messages.error(request, "UserProfile does not exist.")
+        logging.debug('Redirecting to /')
+        return redirect('/')
+    
+    logging.debug(f'Rendering user {userprofile.user}')
+    return render(request, 'users/user_profile.html', {'userprofile': userprofile})
