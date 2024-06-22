@@ -24,7 +24,7 @@
                 </div>
                 <div class="col" align="end">
                     <p>Posted on: <strong>{{post.date}}</strong></p>
-                    <p>Written by: <strong>{{post.author}}</strong></p>
+                    <p>Written by: <strong><a href="{% url 'users:profile'  username=user.username %}">{{ post.author }}</a></strong></p>
                 </div>
             </div>
         </div>  
