@@ -53,6 +53,9 @@
                                 {% csrf_token %}
                                 <li><button class="dropdown-item" type="submit">Logout</button></li>
                             </form>
+                            <li><button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                Launch demo modal
+                            </button></li>
                         </ul>
                     </div>
                     {% else %}
@@ -89,10 +92,8 @@
 
 
         <!-- Modals -->
-         <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-            Launch demo modal
-        </button>
+        <!-- Button trigger modal -->
+        
 
         <!-- Modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
