@@ -49,10 +49,9 @@
                             <li><a class="dropdown-item" href="{% url 'posts:new-post' %}">New Post</a></li>
                             <li><a class="dropdown-item" href="{% url 'users:update-profile' %}">Profile</a></li>
                             <li><hr class="dropdown-divider"></li>
-                            <form class="logout" action="{% url 'users:logout' %}" method="POST">
-                                {% csrf_token %}
-                                <li><button class="dropdown-item" type="submit">Logout</button></li>
-                            </form>
+                            <li><button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#logoutModal">
+                                Logout
+                            </button></li>
                         </ul>
                     </div>
                     {% else %}
@@ -85,6 +84,33 @@
                 </ul>
                 <p class="text-center text-body-secondary">&copy; 2024 Aleandro Presta</p>
             </footer>
+        </div>
+
+
+        <!-- Modals -->
+        <!-- Button trigger modal -->
+        
+
+        <!-- Modal -->
+        <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="logoutModalLabel">Confirm Logout</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Are you sure you want to logout?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <form class="logout" action="{% url 'users:logout' %}" method="POST">
+                            {% csrf_token %}
+                            <button class="btn btn-dark" type="submit">Logout</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
 
     </body>
