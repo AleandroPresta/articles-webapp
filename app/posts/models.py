@@ -64,6 +64,7 @@ class Post(models.Model):
 class Comment(models.Model):
     body = models.TextField(default='')
     post = models.ForeignKey(Post, on_delete=models.CASCADE, default=None)
+    author = models.ForeignKey(User, on_delete=models.CASCADE, default=None)
 
     def __str__(self):
         return self.body

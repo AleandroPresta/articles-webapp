@@ -33,6 +33,8 @@
         <h2 class="text-center">Comments</h2>
         {% for comment in comments %}
             <p>{{comment.body}}</p>
+            <p>Posted on: <strong>{{comment.date}}</strong></p>
+            <p>Written by: <strong>{{comment.author}}</strong></p>
         {% endfor %}
     </section>
 {% endblock %}
