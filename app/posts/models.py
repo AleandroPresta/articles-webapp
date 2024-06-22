@@ -59,3 +59,11 @@ class Post(models.Model):
             if category == code:
                 return name
         return 'Other'
+    
+
+class Comment(models.Model):
+    body = models.TextField(default='')
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, default=None)
+
+    def __str__(self):
+        return self.body
