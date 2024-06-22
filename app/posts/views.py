@@ -1,9 +1,16 @@
 from django.shortcuts import render, redirect
-from .models import Post
+from .models import Post, Comment
 from .models import CATEGORY_CHOICES
 from django.contrib.auth.decorators import login_required
 from . import forms
 from django.utils.text import slugify
+
+import logging
+logging.basicConfig(
+    level=logging.DEBUG,
+    format='%(asctime)s [%(levelname)s] %(message)s',
+    filename='logs/users_viwes.log',
+    )
 
 # Create your views here.
 def all_posts(request):
@@ -12,7 +19,10 @@ def all_posts(request):
 
 def post_page(request, slug):
     post = Post.objects.get(slug=slug)
-    return render(request, 'posts/post_page.html', { 'post': post })
+    comments = Comment.objects.filter(post=post)
+    logging.debug(f"Post: {post}")
+    logging.debug(f"Comments: {comments}")
+    return render(request, 'posts/post_page.html', { 'post': post, 'comments': comments })
 
 @login_required(login_url="/users/login/")
 def post_new(request):
