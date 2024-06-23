@@ -163,5 +163,5 @@ cython_debug/
 
 
 # Added by @AleandroPresta
-media/
-logs/
+media/*
+logs/*
