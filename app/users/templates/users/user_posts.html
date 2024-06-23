@@ -19,6 +19,8 @@
                             <p class="card-text">Category: <strong>{{post.get_category_display}}</strong></p>
                             <p class="card-text text-truncate">{{ post.body }}</p>
                             <a href="{% url 'posts:page' slug=post.slug %}" class="btn btn-dark">Read Full Article</a>
+                            <a href="{% url 'posts:edit-post' slug=post.slug %}" class="btn btn-warning">Edit</a>
+                            <a href="{% url 'posts:delete-post' slug=post.slug %}" class="btn btn-danger">Delete</a>
                         </div>
                     </div>
                 </div>

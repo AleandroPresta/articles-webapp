@@ -16,7 +16,7 @@ logging_path = './logs/users_views.log'
 
 logging.basicConfig(
     level=logging.DEBUG,
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    format='%(asctime)s [%(levelname)s] %(message)s',
     datefmt='%m/%d/%Y %H:%M:%S',
     filename=logging_path,
     )

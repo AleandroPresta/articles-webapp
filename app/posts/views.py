@@ -5,9 +5,11 @@ from django.contrib.auth.decorators import login_required
 from . import forms
 from django.utils.text import slugify
 
+from django.views.decorators.http import require_http_methods
+
 import logging
 
-logging_path = 'logs/posts_viwes.log'
+logging_path = 'logs/posts_views.log'
 
 logging.basicConfig(
     level=logging.INFO,
@@ -96,3 +98,38 @@ def comment_new(request, slug):
         logging.debug(f"Comment new GET request")
     
     return render(request, 'posts/comment_new.html', {'form': form, 'slug': slug})
+
+
+def post_edit_view(request, slug):
+    logging.info(f"Post edit view on post with slug: {slug}")
+    # If the request was not done by the autor of the post, return 403
+    if request.user != Post.objects.get(slug=slug).author:
+        logging.error(f"User {request.user} is not the author of the post {slug}")
+        return render(request, '403.html')
+    
+    # Fetch the post from the server
+    post = Post.objects.get(slug=slug)
+    if request.method == 'POST':
+        logging.debug(f"POST request on post {slug}")
+        form = forms.EditPost(request.POST, request.FILES, instance=post)
+        if form.is_valid():
+            logging.debug(f"Form is valid")
+            form.save()
+            return redirect('posts:page', slug=slug)
+        
+    else:
+        form = forms.EditPost(instance=post)
+        logging.debug(f"GET request on post {slug}")
+    
+    return render(request, 'posts/post_edit.html', {'form': form, 'slug': slug})
+
+
+@require_http_methods([ "GET", "DELETE"])
+def post_delete_view(request, slug):
+    logging.info(f"Post delete view on post with slug: {slug}")
+    # If the request was not done by the autor of the post, return 403
+    if request.user != Post.objects.get(slug=slug).author:
+        logging.error(f"User {request.user} is not the author of the post {slug}")
+        return render(request, '403.html')
+    
+    pass
