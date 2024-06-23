@@ -133,4 +133,5 @@ def post_delete_view(request, slug):
     
     post = Post.objects.get(slug=slug)
     post.delete()
-    return redirect('posts:list')
+    logging.debug(f"Post {slug} deleted")
+    return redirect('users:user-posts')
