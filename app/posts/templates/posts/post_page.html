@@ -29,12 +29,17 @@
             </div>
         </div>  
     </section>
+    
+    <!-- Comments section -->
     <section>
         <h2 class="text-center">Comments</h2>
         {% for comment in comments %}
+        <div class="comment">
             <p>{{comment.body}}</p>
             <p>Posted on: <strong>{{comment.date}}</strong></p>
             <p>Written by: <strong>{{comment.author}}</strong></p>
+            <img src="{{ comment.author.userprofile.profile_image.url }}" alt="user profile image" width="32" height="32" class="rounded-circle">
+        </div>
         {% endfor %}
     </section>
 {% endblock %}
