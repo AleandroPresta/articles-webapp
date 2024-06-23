@@ -6,10 +6,13 @@ from . import forms
 from django.utils.text import slugify
 
 import logging
+
+logging_path = 'logs/posts_viwes.log'
+
 logging.basicConfig(
-    level=logging.DEBUG,
+    level=logging.INFO,
     format='%(asctime)s [%(levelname)s] %(message)s',
-    filename='logs/users_viwes.log',
+    filename=logging_path,
     )
 
 # Create your views here.
@@ -71,4 +74,25 @@ def filter_posts(request):
 @login_required(login_url="/users/login/")
 def comment_new(request, slug):
     logging.info(f"Comment view on post with slug: {slug}")
-    return render(request, 'posts/comment_new.html')
+    
+    if request.method == 'POST':
+        logging.debug(f"Comment new POST request")
+        form = forms.CreateComment(request.POST)
+        if form.is_valid():
+            logging.debug(f'Comment form is valid')
+            newcomment = form.save(commit=False)
+            newcomment.author = request.user
+            
+            post = Post.objects.get(slug=slug)
+            newcomment.post = post
+            
+            newcomment.save()
+            logging.debug(f'Comment saved: {newcomment} saved for post {post}')
+            logging.info(f'Comment saved successfully, redirecting to post {slug}')
+            return redirect('posts:page', slug=slug)
+        
+    else:
+        form = forms.CreateComment()
+        logging.debug(f"Comment new GET request")
+    
+    return render(request, 'posts/comment_new.html', {'form': form, 'slug': slug})
