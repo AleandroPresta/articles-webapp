@@ -59,7 +59,9 @@
                                 </div>
                             </div>
                             {% endfor %}
-                            <a class="btn btn-dark mt-2" href="{% url 'posts:new-comment' slug=post.slug %}">Leave a comment</a>
+                            <div class="row">
+                                <a class="btn btn-dark mt-2" href="{% url 'posts:new-comment' slug=post.slug %}">Leave a comment</a>
+                            </div>
                         </div>
                     </div>
                 </div>
