@@ -4,6 +4,7 @@ from django.contrib.auth import login, logout
 from .forms import UserInfoForm
 from .models import UserProfile
 from django.contrib import messages
+from posts.models import Post
 
 '''
     Create a logger for the views
@@ -100,6 +101,7 @@ def profile_view(request, username):
     logging.debug(f'Request: {request}')
     try:
         userprofile = UserProfile.objects.get(user__username=username)
+        posts = Post.objects.filter(author=userprofile.user)
         logging.debug(f'User: {userprofile}')
     except UserProfile.DoesNotExist:
         logging.error('UserProfile does not exist.')
@@ -108,4 +110,4 @@ def profile_view(request, username):
         return redirect('/')
     
     logging.debug(f'Rendering user {userprofile.user}')
-    return render(request, 'users/user_profile.html', {'userprofile': userprofile})
+    return render(request, 'users/user_profile.html', {'userprofile': userprofile, 'posts': posts})
