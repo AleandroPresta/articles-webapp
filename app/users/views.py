@@ -5,6 +5,7 @@ from .forms import UserInfoForm
 from .models import UserProfile
 from django.contrib import messages
 from posts.models import Post
+from django.contrib.auth.decorators import login_required
 
 '''
     Create a logger for the views
@@ -111,3 +112,11 @@ def profile_view(request, username):
     
     logging.debug(f'Rendering user {userprofile.user}')
     return render(request, 'users/user_profile.html', {'userprofile': userprofile, 'posts': posts})
+
+
+@login_required(login_url="/users/login/")
+def user_posts_view(request):
+    logging.info('Calling my_posts view')
+    posts = Post.objects.filter(author=request.user)
+    logging.debug('Loading Posts for user {request.user}')
+    return render(request, 'users/user_posts.html', {'posts': posts})
