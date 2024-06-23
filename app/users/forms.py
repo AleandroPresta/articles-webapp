@@ -9,6 +9,10 @@ class UserInfoForm(forms.ModelForm):
         widget=forms.FileInput(attrs={'class': 'form-control-file'})
         )
     
+    bio = forms.CharField(max_length=500, blank=True, default='')
+    address = forms.CharField(max_length=100, blank=True, default='')
+    phone = forms.CharField(max_length=20, blank=True, default='')
+    
     class Meta:
         model = UserProfile
-        fields = ( 'profile_image',)
+        fields = ( 'profile_image', 'bio', 'address', 'phone')
