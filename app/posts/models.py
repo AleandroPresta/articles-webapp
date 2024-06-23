@@ -29,17 +29,6 @@ CATEGORY_CHOICES = [
     ('OTR', 'Other')
 ]
 
-class Comment(models.Model):
-    body = models.TextField()
-    date = models.DateTimeField(auto_now_add=True)
-    author = models.ForeignKey(User, on_delete=models.CASCADE, default=None)
-    
-    class Meta:
-        ordering = ['-date']
-        
-    def __str__(self) -> str:
-        return self.body
-
 # Create your models here.
 class Post(models.Model):
     # Define the available categories
@@ -51,8 +40,6 @@ class Post(models.Model):
     date = models.DateTimeField(auto_now_add=True)
     banner = models.ImageField(default='../static/assets/fallback.webp', blank=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE, default=None)
-    
-    comments = models.ManyToManyField(Comment, blank=True)
     
     class Meta:
         ordering = ['-date']
@@ -72,3 +59,13 @@ class Post(models.Model):
             if category == code:
                 return name
         return 'Other'
+    
+
+class Comment(models.Model):
+    body = models.TextField(default='')
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, default=None)
+    date = models.DateTimeField(auto_now_add=True)
+    author = models.ForeignKey(User, on_delete=models.CASCADE, default=None)
+
+    def __str__(self):
+        return self.body

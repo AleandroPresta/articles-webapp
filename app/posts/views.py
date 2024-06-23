@@ -1,9 +1,19 @@
 from django.shortcuts import render, redirect
-from .models import Post
+from .models import Post, Comment
 from .models import CATEGORY_CHOICES
 from django.contrib.auth.decorators import login_required
 from . import forms
 from django.utils.text import slugify
+
+import logging
+
+logging_path = 'logs/posts_viwes.log'
+
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s [%(levelname)s] %(message)s',
+    filename=logging_path,
+    )
 
 # Create your views here.
 def all_posts(request):
@@ -12,7 +22,10 @@ def all_posts(request):
 
 def post_page(request, slug):
     post = Post.objects.get(slug=slug)
-    return render(request, 'posts/post_page.html', { 'post': post })
+    comments = Comment.objects.filter(post=post)
+    logging.debug(f"Post: {post}")
+    logging.debug(f"Comments: {comments}")
+    return render(request, 'posts/post_page.html', { 'post': post, 'comments': comments })
 
 @login_required(login_url="/users/login/")
 def post_new(request):
@@ -56,3 +69,30 @@ def filter_posts(request):
     else:
         posts = Post.objects.all()
         return render(request, 'posts/filter_posts.html', {'posts': posts})
+    
+
+@login_required(login_url="/users/login/")
+def comment_new(request, slug):
+    logging.info(f"Comment view on post with slug: {slug}")
+    
+    if request.method == 'POST':
+        logging.debug(f"Comment new POST request")
+        form = forms.CreateComment(request.POST)
+        if form.is_valid():
+            logging.debug(f'Comment form is valid')
+            newcomment = form.save(commit=False)
+            newcomment.author = request.user
+            
+            post = Post.objects.get(slug=slug)
+            newcomment.post = post
+            
+            newcomment.save()
+            logging.debug(f'Comment saved: {newcomment} saved for post {post}')
+            logging.info(f'Comment saved successfully, redirecting to post {slug}')
+            return redirect('posts:page', slug=slug)
+        
+    else:
+        form = forms.CreateComment()
+        logging.debug(f"Comment new GET request")
+    
+    return render(request, 'posts/comment_new.html', {'form': form, 'slug': slug})

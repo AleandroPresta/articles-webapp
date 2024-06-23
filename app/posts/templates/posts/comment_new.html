@@ -1,0 +1,25 @@
+{% extends 'layout.html'%}
+{% load crispy_forms_tags %}
+{% block title%}
+    New Comment Page
+{% endblock %}
+{% block content %}
+<div class="container py-4">
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-8 col-xl-6">
+            <div class="card px-5 py-5">
+                <h1 class="h3 mb-3 fw-normal">New Post</h1>
+                <form
+                class="row"
+                action="{% url 'posts:new-comment' slug=slug %}" 
+                method="POST" 
+                enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form | crispy }}
+                    <button type="submit" class="btn btn-dark">Submit Comment</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

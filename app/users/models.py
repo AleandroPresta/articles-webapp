@@ -6,7 +6,7 @@ from django.db.models.signals import post_save
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    profile_image = models.ImageField(upload_to='profile_images', blank=True)
+    profile_image = models.ImageField(default='../static/assets/user-fallback.webp', blank=True)
     
     def __str__(self):
         return self.user.username
