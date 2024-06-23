@@ -23,5 +23,26 @@
             </div>
         </div>
     </div>
-</div>
+    <div class="row" align="center">
+        <h5 class="text-center">Take a look at @{{ userprofile }}'s posts!</h5>
+        {% for post in posts %}
+            <div class="col-xl-6 col-xxl-4 p-2">
+                <div class="card" style="width: 20rem; max-width: 100%;" align="start">
+                    <img 
+                        src="{{ post.banner.url }}" 
+                        alt="Image description"
+                        class="card-img-top"/>
+                        <div class="card-body">
+                            <h2 class="card-title">{{ post.title }}</h2>
+                            <p class="card-text">{{ post.date }} by <strong><a href="{% url 'users:profile'  username=post.author.username %}">{{ post.author }}</a></strong></p>
+                            <p class="card-text">Category: <strong>{{post.get_category_display}}</strong></p>
+                            <p class="card-text text-truncate">{{ post.body }}</p>
+                            <a href="{% url 'posts:page' slug=post.slug %}" class="btn btn-dark">Read Full Article</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+            </div>
+        </div>
+    </div>
 {% endblock %}
