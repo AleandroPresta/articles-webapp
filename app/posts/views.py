@@ -124,7 +124,6 @@ def post_edit_view(request, slug):
     return render(request, 'posts/post_edit.html', {'form': form, 'slug': slug})
 
 
-@require_http_methods([ "GET", "DELETE"])
 def post_delete_view(request, slug):
     logging.info(f"Post delete view on post with slug: {slug}")
     # If the request was not done by the autor of the post, return 403
@@ -132,4 +131,6 @@ def post_delete_view(request, slug):
         logging.error(f"User {request.user} is not the author of the post {slug}")
         return render(request, '403.html')
     
-    pass
+    post = Post.objects.get(slug=slug)
+    post.delete()
+    return redirect('posts:list')
