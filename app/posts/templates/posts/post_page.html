@@ -24,7 +24,7 @@
                 </div>
                 <div class="col" align="end">
                     <p>Posted on: <strong>{{post.date}}</strong></p>
-                    <p>Written by: <strong><a href="{% url 'users:profile'  username=user.username %}">{{ post.author }}</a></strong></p>
+                    <p>Written by: <a href="{% url 'users:profile'  username=user.username %}">{{ post.author }}</a></p>
                 </div>
             </div>
         </div>  
@@ -59,6 +59,7 @@
                                 </div>
                             </div>
                             {% endfor %}
+                            <a class="btn btn-dark mt-2" href="#">Leave a comment</a>
                         </div>
                     </div>
                 </div>
