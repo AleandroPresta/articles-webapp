@@ -66,3 +66,9 @@ def filter_posts(request):
     else:
         posts = Post.objects.all()
         return render(request, 'posts/filter_posts.html', {'posts': posts})
+    
+
+@login_required(login_url="/users/login/")
+def comment_new(request, slug):
+    logging.info(f"Comment view on post with slug: {slug}")
+    return render(request, 'posts/comment_new.html')

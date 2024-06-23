@@ -9,4 +9,5 @@ urlpatterns = [
     path('<slug:slug>', views.post_page, name='page'),
     path('search/', views.search_posts, name='search-view'),
     path('filter/', views.filter_posts, name='filter-view'),
+    path('<slug:slug>/new-comment/', views.comment_new, name='new-comment')
 ]
