@@ -72,6 +72,12 @@ Before you begin, ensure you have the following installed on your system:
 - **Navigate Posts**: Navigate all the posts in the site, using the search and filter functionality to make the reserch easier.
     ![All Posts](./screenshots/All%20Posts.png)
 
+- **Edit and delete your posts**: Edit and delete posts that you have created from your profile.
+
+    ![My Profile](./screenshots/My%20Profile.png)
+
+    ![Edit Post](./screenshots/Edit%20Post.png)
+
 - **Update your profile**: Update your profile picture, bio, address and phone number.
     ![Update User](./screenshots/Update%20User.png)
 
