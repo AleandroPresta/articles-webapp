@@ -6,11 +6,6 @@
 - [Features](#features)
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
-  - [Clone the Repository](#clone-the-repository)
-  - [Set Up a Virtual Environment (Optional but recommended)](#set-up-a-virtual-environment-optional-but-recommended)
-  - [Install Dependencies](#install-dependencies)
-  - [Database Migrations](#database-migrations)
-  - [Run the Development Server](#run-the-development-server)
 - [Usage](#usage)
 - [Contributing](#contributing)
 
@@ -67,8 +62,24 @@ Before you begin, ensure you have the following installed on your system:
 ## Usage
 
 - **Sign Up**: Navigate to the sign-up page to create a new user account.
+    ![Sign Up](./screenshots/Signup.png)
+
 - **Log In**: Log in with your user credentials to access the application.
+    ![Log In](./screenshots/Login.png)
 - **Add New Post**: Once logged in, you can add new posts by navigating to the appropriate section in the application.
+    ![New Post](./screenshots/New%20Post.png)
+
+- **Navigate Posts**: Navigate all the posts in the site, using the search and filter functionality to make the reserch easier.
+    ![All Posts](./screenshots/All%20Posts.png)
+
+- **Update your profile**: Update your profile picture, bio, address and phone number.
+    ![Update User](./screenshots/Update%20User.png)
+
+- **User Profile**: Visit other people's profiles and see their informations and their posts.
+    ![User Profile](./screenshots/User%20profile.png)
+
+- **Articles and Comments**: Read the full articles and leave comments.
+    ![Articles and comments](./screenshots/Articles%20and%20comments.png)
 
 ## Contributing
 
