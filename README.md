@@ -1,5 +1,20 @@
 # Articles Webapp
 
+## Table of Contents
+
+- [Overview](#overview)
+- [Features](#features)
+- [Prerequisites](#prerequisites)
+- [Installation](#installation)
+  - [Clone the Repository](#clone-the-repository)
+  - [Set Up a Virtual Environment (Optional but recommended)](#set-up-a-virtual-environment-optional-but-recommended)
+  - [Install Dependencies](#install-dependencies)
+  - [Database Migrations](#database-migrations)
+  - [Run the Development Server](#run-the-development-server)
+- [Usage](#usage)
+- [Contributing](#contributing)
+
+
 ## Overview
 
 `articles-webapp` is a web application built using Django, a high-level Python web framework, and Bootstrap, a front-end framework for developing responsive and mobile-first websites. This application allows users to sign up, log in, and publish new posts, making it an ideal platform for sharing articles, blogs, or any form of written content.
